@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+   <mapper namespace="com.red.boot.mapper.MemberListMapper">
+   
+          <sql id="search">
+          <trim suffix=" ) and" prefix="(">
+             <foreach collection="typeArr" item="type" separator=" or ">
+                <if test="type == 'N'.toString()">
+                   userName like  '%'||#{keyword}||'%'
+                </if>
+                <if test="type == 'I'.toString()">
+                   userId like '%'||#{keyword}||'%'
+                </if>
+             </foreach>
+          </trim>   
+       </sql>   
+   
+   
+         <select id="getMemberList" resultType="com.red.boot.domain.MemberVO">
+            <![CDATA[  
+               select * from               
+               (select rownum rno, temp.*    from          
+                   (SELECT * FROM userInfoTable Where 
+         ]]>          
+                   <include refid="search"></include>
+         <![CDATA[           
+                   userRole < 9 Order by userNum) temp
+                   where rownum > 0 and rownum <= (#{pageNo} * #{amount}))
+             WHERE rno > (#{pageNo}-1) * #{amount}
+             ]]> 
+            
+         </select>
+   
+         <select id="getMemberListAdmin" resultType="com.red.boot.domain.MemberVO">
+            <![CDATA[  
+               select * from               
+               (select rownum rno, temp.*    from          
+                   (SELECT * FROM userInfoTable Where 
+          ]]>          
+                   <include refid="search"></include>
+         <![CDATA[                    
+                   userRole < 8 Order by userNum) temp
+                   where rownum > 0 and rownum <= (#{pageNo} * #{amount}))
+             WHERE rno > (#{pageNo}-1) * #{amount}
+             ]]>  
+         </select>
+         
+         <update id="updateUserRole" parameterType="java.util.Map">
+         
+       UPDATE userInfoTable
+          SET userRole = #{userRole}
+         WHERE userNum = #{userNum}
+         
+         </update>
+         
+         <delete id="deleteMemberByNum">
+          DELETE 
+          FROM userInfoTable
+          WHERE userNum = #{userNum}
+         </delete>
+         
+         
+        <select id="getTotalCount" resultType="int">
+            <![CDATA[  
+               select count(userNum)  from userInfoTable
+               where 
+             ]]>   
+              <include refid="search"></include>
+             <![CDATA[    
+               userNum > 0 
+             ]]>   
+         </select>
+         
+                  
+       <select id="getTotalCountAdmin" resultType="int">
+            <![CDATA[  
+               select count(userNum)  from userInfoTable
+               where 
+             ]]>   
+                <include refid="search"></include>
+             <![CDATA[    
+               userRole < 8
+             ]]>   
+         </select> 
+   
+         
+   </mapper>

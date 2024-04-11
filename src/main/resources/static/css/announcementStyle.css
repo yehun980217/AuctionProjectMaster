@@ -1,0 +1,135 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'TheJamsil5Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+.innerWrap h1{
+
+	color : coral ;
+	font-weight: bold;
+	font-size: 42px;
+	letter-spacing: 16px;
+	font-family: 'TheJamsil5Bold';
+	margin-bottom : 30px; 
+	text-align: center;
+}
+
+.innerWrap{
+	width: 1200px;
+}
+
+.outWrap{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+ 	background-size: cover;
+}
+ 
+.announcementTable{
+	margin:auto;
+	border-collapse:collapse;
+	box-shadow:  5px 5px 3px coral;
+}
+ 
+ 
+.announcementTable th {
+	font-family: 'TheJamsil5Bold';
+ 	text-align: center;
+ 	border : 2px coral solid;
+ 	font-size: 36px;
+ }
+ 	
+.announcementTable td {
+   font-family: 'SUITE-Regular';
+ 	text-align: center;
+ 	border : 2px coral solid;
+ 	font-size: 20px;
+ 
+ }
+ 	
+ 	
+.pageWrap .pagination{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+ 
+ 
+ 	
+.pageWrap .pagination .page-item {
+	border : 1px solid black;
+ 	float: left;
+ 	font-size: 24px;
+ 	background-color: black;
+ 	color : coral;
+ 	font-weight : 900;
+ 	margin-right : 12px;
+ 	padding : 0 8px;
+ 	box-shadow: 0px 0px 10px coral;
+ } 	
+ 
+ .inputbtn{
+  background-color: #ff6b6b; /* 빨간색 배경 */
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  margin: 10px 0;
+  width:200px;
+}
+ 
+.inputbtn:hover{
+ background-color: #ff0000;
+ }
+ 
+.announcementContent{
+  background-color: #002f47; /* 짙은 파란색 배경 */
+  color: #ffdc6b; /* 황금색 글자색 */
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  resize: none; /* textarea의 크기가 border를 포함하도록 설정 */
+}
+ 
+.announcementContent:focus {
+background-color: #ffdc6b; /* 황금색 배경 */
+  color: #002f47; /* 짙은 파란색 글자색 */
+}
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

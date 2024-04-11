@@ -1,0 +1,118 @@
+@charset "UTF-8";
+/* �⑤벏�꽰 占쎈뮞占쏙옙占쎌뵬 */
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+/* Styles for footer */
+footer {
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    color: #fff;
+}
+
+/* Common styles for footer sections */
+#topFooter, #underFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
+    font-weight: bold;
+}
+
+#topFooter{
+    background-color: #fff;
+    color: #000;
+    padding: 20px 0;
+    
+}
+
+/* Admit Icons styles */
+#topFooterAdmitIcons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+#topFooterAdmitIcons img:first-child {
+    width: 100px;
+    height: 100px;
+    margin-right: 30px;
+    border-radius: 10px;
+}
+
+#topFooterAdmitIcons img:last-child {
+    width: 240px;
+    height: 80px;
+    border-radius: 10px;
+}
+
+/* Links styles */
+#topFooterLinks {
+    margin: auto;
+    width:800px;
+    display:flex;
+    justify-content:center;
+    align-content:center;
+    
+}
+
+#topFooterLinks .box {
+    width:200px;
+}
+
+#topFooterLinks .box a, #topFooterLinks .box img {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:40px;
+    height:40px;
+    margin:0 auto;
+}
+
+
+/* SNS Icons styles */
+
+#underFooterSnsIcons img {
+    width: 42px;
+    height: 42px;
+    margin-right: 10px;
+}
+
+#underFooterSnsIcons p{
+    display:flex;
+    justify-content: flex-end; /* 占쎌뒄占쎈꺖占쎈굶占쎌뱽 占쎌궎�몴紐꾠걹占쎌몵嚥∽옙 占쎌젟占쎌졊占쎈�占쎈빍占쎈뼄 */
+    align-items: center; /* 占쎌뒄占쎈꺖占쎈굶占쎌뱽 占쎈땾筌욑옙 揶쏉옙占쎌뒲占쎈쑓 占쎌젟占쎌졊占쎈�占쎈빍占쎈뼄 */
+}
+
+/* Media queries */
+@media screen and (min-width: 920px) {
+    #topFooterAdmitIcons, #underFooterSnsIcons {
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 919px) {
+    #topFooter, #underFooter {
+        flex-direction: justify;
+        text-align: center;
+    }
+
+    #topFooterAdmitIcons img:first-child {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    #topFooterLinks, #underFooterInfos {
+        margin: 20px auto;
+    }
+
+    #underFooterSnsIcons img {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}

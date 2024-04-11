@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.red.boot.mapper.SignupMapper">
+
+
+    
+    <insert id="insertMember" parameterType="com.red.boot.domain.MemberVO">
+        INSERT INTO userInfoTable (userNum, userId, userPw, userName, userPhoneNum, userRole, userRegDate, userCash, userAddress)
+        VALUES (user_seq.nextval, #{userId}, #{userPw}, #{userName}, #{userPhoneNum}, 0, sysdate, 0, #{userAddress})
+    </insert>
+    
+    <!-- 중복 확인을 위한 SQL 쿼리 -->
+	
+	<select id="findByEmail" parameterType="String" resultType="com.red.boot.domain.MemberVO">
+  	SELECT * FROM userInfoTable WHERE userId = #{userId}
+	</select>
+    
+</mapper>
+

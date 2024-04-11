@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- mapper 활용 xml이라는 DTD 설정 -->
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<!-- 어떤 인터페이스랑 연결하는 거다 하고 네임스페이스 하는거지 -->	
+<mapper namespace="com.red.boot.mapper.QaMapper">
+	<sql id="search">
+		<trim suffix=" ) and" prefix="(">
+			<foreach collection="typeArr" item="type" separator=" or ">
+				<if test="type == 'T'.toString()">
+					qaTitle like  '%'||#{keyword}||'%'
+				</if>
+				<if test="type == 'C'.toString()">
+					qaContent like '%'||#{keyword}||'%'
+				</if>
+			</foreach>
+		</trim>	
+	</sql>	
+	
+	
+	<select id="getQaList" resultType="com.red.boot.domain.QaVo">
+		select * from qaTable order by qaNumber desc
+	</select>
+
+	
+	<select id="getQaOne" resultType="com.red.boot.domain.QaVo">
+		select * from qaTable  where qaNumber = #{qaNumber}
+	</select>
+	
+	<delete id="deleteQa">
+		delete from qaTable where qaNumber = #{qaNumber}
+	</delete>
+	
+	<update id="updateQa">
+		update qaTable
+		set
+		qaTitle = #{qaTitle},
+		qaContent  = #{qaContent},
+		qaType  = #{qaType}
+		where qaNumber = #{qaNumber}
+	</update>
+	
+	<insert id="insertQa">
+		 insert into qaTable
+		 (qaNumber, qaTitle, qaContent, qaRegDate, qaType) 
+		  values (qa_seq.nextval,
+		  #{qaTitle}, #{qaContent}, sysdate, #{qaType})
+	</insert>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(qaNumber)  from qaTable
+		where <include refid="search"></include>
+		qaNumber > 0 
+	</select>
+	
+	<select id="getListByType" resultType="com.red.boot.domain.QaVo" parameterType="String">
+		select * from qaTable  where qaType = #{qaType} order by qaNumber desc
+	</select>
+	
+	
+	
+</mapper>

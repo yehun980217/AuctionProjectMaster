@@ -1,0 +1,141 @@
+@charset "UTF-8";
+
+#itemModifyForm {
+	border-collapse: collapse;
+	width: 100%;
+	margin: 20px 0;
+	border: 3px solid #000;
+	background-color: #fff; /*#0c1446*/;
+	color: #000;
+}
+
+#itemModifyForm th, #itemModifyForm td {
+	padding: 10px;
+	text-align: left;
+}
+
+.form-control {
+	background-color: #002f47; /* 짙은 파란색 배경 */
+	color: #ffdc6b; /* 황금색 글자색 */
+	padding: 10px;
+	border: none;
+	border-radius: 3px;
+	margin-bottom: 10px;
+}
+
+.form-control:focus {
+	background-color: #ffdc6b; /* 황금색 배경 */
+	color: #002f47; /* 짙은 파란색 글자색 */
+}
+
+/* 텍스트 에리어 스타일 수정 */
+.itemContent, .qaContent {
+	background-color: #002f47; /* 짙은 파란색 배경 */
+	color: #ffdc6b; /* 황금색 글자색 */
+	padding: 10px;
+	border: none;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	resize: none;
+}
+
+.itemContent:focus, .qaContent:focus {
+	background-color: #ffdc6b; /* 황금색 배경 */
+	color: #002f47; /* 짙은 파란색 글자색 */
+}
+
+.modBtn, .delBtn, .itemlistBtn {
+	background-color: #002f47; /* 짙은 파란색 배경 */
+	color: #ffdc6b; /* 황금색 글자색 */
+	padding: 10px 20px;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+	margin: 10px 30px;
+}
+
+.modBtn:hover, .delBtn:hover, .itemlistBtn:hover {
+	background-color: #ffdc6b; /* 황금색 배경 */
+	color: #002f47; /* 짙은 파란색 글자색 */
+	padding: 10px 20px;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+	margin: 10px 30px;
+}
+
+.delImgBtn {
+	background-color: #ff6b6b; /* 빨간색 배경 */
+	color: #fff;
+	padding: 5px 10px;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+	margin-top: 5px;
+}
+
+.delImgBtn:hover {
+	background-color: #ff0000; /* 빨간색 더 진한 배경 */
+	cursor: pointer;
+}
+
+.auctionBtn {
+	background-color: #ff6b6b; /* 빨간색 배경 */
+	color: #fff;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+	margin: 10px 0;
+	width: 200px;
+}
+
+.auctionBtn:hover {
+	background-color: #ff0000; /* 빨간색 더 진한 배경 */
+	cursor: pointer;
+}
+
+/* file input 스타일 */
+.fileButton {
+	display: inline-block;
+	padding: 10px 20px;
+	background-color: #ffdc6b; /* Golden background */
+	color: #002f47; /* Dark blue text color */
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+	margin: 10px 0;
+	text-align: center;
+	font-size: 16px;
+}
+
+/* Hover 효과 */
+.fileButton:hover {
+	background-color: #002f47; /* Dark blue background */
+	color: #ffdc6b; /* Golden text color */
+	cursor: pointer;
+}
+
+.xdsoft_month>span {
+	font-size: 14px;
+}
+
+#infoModifyBtn {
+	text-decoration: none;
+	background-color: #002f47; /* 짙은 파란색 배경 */
+	color: #ffdc6b; /* 황금색 글자색 */
+	margin: 10px 30px;
+	padding: 10px 20px;
+	border-radius: 3px;
+	border: none;
+}
+
+#infoModifyBtn:hover {
+	background-color: #ffdc6b; /* 황금색 배경 */
+	color: #002f47; /* 짙은 파란색 글자색 */
+	margin: 10px 30px;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+}

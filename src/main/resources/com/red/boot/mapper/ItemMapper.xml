@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- mapper 활용 xml이라는 DTD 설정 -->
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<!-- 어떤 인터페이스랑 연결하는 거다 하고 네임스페이스 하는거지 -->	
+<mapper namespace="com.red.boot.mapper.ItemMapper">
+	
+	<sql id="search">
+		<trim suffix=" ) and" prefix="(">
+			<foreach collection="typeArr" item="type" separator=" or ">
+				<if test="type == 'N'.toString()">
+					itemName like '%'||#{keyword}||'%'
+				</if>
+				<if test="type == 'C'.toString()">
+					itemContent like '%'||#{keyword}||'%'
+				</if>
+			</foreach>
+		</trim>	
+	</sql>	
+
+	
+	<select id="getItemOne" resultType="com.red.boot.domain.ItemVo">
+		select * from ItemTable  where itemNumber = #{itemNumber}
+	</select>
+	
+	<delete id="deleteItem">
+		delete from ItemTable where itemNumber = #{itemNumber}
+	</delete>
+	
+	<update id="updateItem">
+		update  ItemTable
+		set
+		itemName = #{itemName},
+		itemContent  = #{itemContent}
+		where itemNumber = #{itemNumber}
+	</update>
+	
+	<update id="updateTradeIng">
+		update  ItemTable
+		set
+		tradeIng = #{tradeIng}
+		where itemNumber = #{itemNumber}
+	</update>
+	
+	<insert id="insertItem">
+		 insert into ItemTable
+		 (itemNumber, itemName, itemContent, 
+		 itemHave, tradeIng) 
+		  values (item_seq.nextval, #{itemName}, 
+		  #{itemContent}, 1, 'N')
+	</insert>
+	
+	<select id="getListWithPaging" resultType="com.red.boot.domain.ItemVo">
+		<![CDATA[  
+		    SELECT * FROM (
+                SELECT ROWNUM AS rno, itemTable.* FROM (
+	              	select *  from ItemTable 
+	                Order by itemHave desc, itemNumber desc
+	            ) itemTable where
+       ]]>          
+       		<include refid="search"></include>
+     
+      <![CDATA[ 
+      		rownum > 0 and rownum <= (#{pageNo} * #{amount})    
+            ) WHERE rno > (#{pageNo}-1) * #{amount}   
+	  ]]>   
+	      		
+      <![CDATA[           
+                    
+           
+      ]]>           
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(itemNumber)  from itemTable
+		where <include refid="search"></include>
+		itemNumber > 0 
+	</select>
+	
+	<select id="getListByHave" resultType="com.red.boot.domain.ItemVo">
+		 <![CDATA[ 
+			select * from 
+			(select rownum as rno, itemTable.* from itemTable
+			where 
+		 ]]>
+			<if test="pi.type == 'N'.toString()">
+				itemName like '%'||#{pi.keyword}||'%' and
+			</if>
+			<if test="pi.type == 'C'.toString()">
+				itemContent like '%'||#{pi.keyword}||'%' and
+			</if>
+			<if test="pi.type == 'A'.toString()">
+				( itemContent like '%'||#{pi.keyword}||'%' or 
+				itemName like '%'||#{pi.keyword}||'%' ) and
+			</if>
+
+		<![CDATA[ 
+			itemHave = #{itemHave} and rownum > 0 and rownum <= (#{pi.pageNo} * #{pi.amount})   
+			order by itemNumber desc)
+			WHERE rno > (#{pi.pageNo}-1) * #{pi.amount}    
+		 ]]>
+	</select>
+	
+	
+	<select id="getTotalCountByHave" resultType="int">
+		select count(itemNumber)  from itemTable
+		where 
+		<if test="pi.type == 'N'.toString()">
+				itemName like '%'||#{pi.keyword}||'%' and
+		</if>
+		<if test="pi.type == 'C'.toString()">
+				itemContent like '%'||#{pi.keyword}||'%' and
+		</if>
+		<if test="pi.type == 'A'.toString()">
+				( itemContent like '%'||#{pi.keyword}||'%' 
+				or itemName like '%'||#{pi.keyword}||'%' ) and 
+		</if>
+		itemHave = #{itemHave}
+	</select>
+	
+	<update id="updateItemHave">
+		update  ItemTable
+		set
+		itemHave = #{itemHave}
+		where itemNumber = #{itemNumber}
+	</update>
+	
+</mapper>

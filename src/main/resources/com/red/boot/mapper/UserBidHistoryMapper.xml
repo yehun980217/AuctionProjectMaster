@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- mapper 활용 xml이라는 DTD 설정 -->
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<!-- 어떤 인터페이스랑 연결하는 거다 하고 네임스페이스 하는거지 -->	
+<mapper namespace="com.red.boot.mapper.UserBidHistoryMapper">
+	
+
+	<insert id="insertUserBid">
+		 insert into userBidHistoryTable
+		 (USERBIDNUMBER, USERBIDPRICE, USERBIDTIME, USERBIDYN,USERNUM, ITEMNUMBER, TRADENUMBER) values 
+		 (userBid_seq.nextval, #{userBidPrice}, sysdate, '응찰', #{userNum},  #{itemNumber}, #{tradeNumber})
+	</insert>
+
+	<update id="updateUserBidYN">
+		update userBidHistoryTable set
+		USERBIDYN = '낙찰'
+		where USERBIDNUMBER = #{userBidNumber}
+	</update>
+	
+	<select id="getUserBidListByTradeNumber" resultType="com.red.boot.domain.UserBidHistoryVo">
+		<![CDATA[
+			select rownum, temp.* from 
+      		  (select userBidHistoryTable.* from userBidHistoryTable where tradeNumber = #{tradeNumber}
+        			order by USERBIDTIME desc)temp where rownum <11
+		]]>
+	</select>
+	
+	<select id="getUserBidListByUserNum"  resultType="com.red.boot.domain.UserBidHistoryVo">
+		<![CDATA[
+			select * from
+            	(select rownum rno, temp.* from
+	      		  		(select userBidHistoryTable.* from userBidHistoryTable where userNum = #{userNum}
+                    		order by USERBIDTIME desc) temp 
+	        	where 	 rownum > 0 and rownum <=  (#{pi.pageNo} * #{pi.amount})  ) fnl 
+            where rno > (#{pi.pageNo}-1) * #{pi.amount}
+		]]>
+	</select>
+	
+	<select id="getUserBidListByUserNumCount"  resultType="int">
+		<![CDATA[
+			
+			select count(USERBIDNUMBER) from userBidHistoryTable where userNum = #{userNum} and userBidNumber > 0
+		]]>
+	</select>
+
+	
+</mapper>

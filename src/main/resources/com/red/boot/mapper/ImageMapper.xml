@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.red.boot.mapper.ImageMapper">
+	
+	<insert id="insert">
+		INSERT INTO ImageTable (imageNumber, FileRealName, UPLOADPATH, FILENAME, loadFileRootName, viewLoadName, itemNumber) 
+		VALUES (image_seq.nextval, #{fileRealName}, #{uploadPath}, #{fileName}, #{loadFileRootName}, #{viewLoadName}, item_seq.currval)
+	</insert>
+	
+	<insert id="insertByNum">
+		INSERT INTO ImageTable (imageNumber, FileRealName, UPLOADPATH, FILENAME, loadFileRootName, viewLoadName, itemNumber) 
+		VALUES (image_seq.nextval, #{fileRealName}, #{uploadPath}, #{fileName}, #{loadFileRootName}, #{viewLoadName}, #{itemNumber})
+	</insert>
+	
+	
+	<delete id="delete">
+		DELETE FROM ImageTable WHERE loadFileRootName = #{loadFileRootName}
+	</delete>
+	
+	<delete id="deleteAll">
+		DELETE FROM ImageTable WHERE itemNumber = #{itemNumber}
+	</delete>
+	
+	<select id="findByItemNum" resultType="com.red.boot.domain.ImageVo">
+		SELECT * FROM ImageTable WHERE itemNumber = #{itemNumber} order by imageNumber asc
+	</select>
+	
+	<select id="findByItemNumOne" resultType="com.red.boot.domain.ImageVo" parameterType="Long">
+		<![CDATA[  
+			SELECT * FROM ImageTable 
+			WHERE itemNumber = #{itemNumber} and rownum < 2 
+			order by imageNumber asc
+		]]>	
+	</select>
+	
+	<select id="findByFileNameOne" resultType="com.red.boot.domain.ImageVo">
+		SELECT * FROM ImageTable WHERE fileName = #{fileName}
+	</select>
+	
+</mapper>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.red.boot.mapper.QuestionMapper">
+	<sql id="search">
+		<trim suffix=" ) and" prefix="(">
+			<foreach collection="typeArr" item="type" separator=" or ">
+				<if test="type == 'T'.toString()">
+					questionTitle like '%'||#{keyword}||'%'
+				</if>
+				<if test="type == 'C'.toString()">
+					questionContent like '%'||#{keyword}||'%'
+				</if>
+			</foreach>
+		</trim>
+	</sql>
+
+
+
+	<!-- 관리자 문의 상세보기 -->
+	<select id="adminGetDetail"
+		resultType="com.red.boot.domain.QuestionVO">
+		SELECT
+		q.questionNumber,q.questionTitle,q.questionContent,q.questionRegDate,q.questionComplete,
+		u.userId
+		FROM questionTable q
+		INNER JOIN userInfoTable u ON q.userNum =
+		u.userNum
+		WHERE questionNumber = #{questionNumber}
+	</select>
+
+	<!-- 답변 상태 업데이트 -->
+	<update id="updateComplete">
+		update questionTable set questionComplete = 1 where
+		questionNumber = #{questionNumber}
+	</update>
+
+	<!-- 페이징 -->
+	<select id="getListWithPaging"
+		resultType="com.red.boot.domain.QuestionVO">
+      <![CDATA[  
+           SELECT * FROM (
+                SELECT ROWNUM AS rno, questionTable.* FROM (
+                    select * from questionTable where userNum = #{userNum}
+                    order by questionNumber desc
+                 ) questionTable WHERE 
+       ]]>
+	                
+       <![CDATA[                             
+                 rownum > 0 and rownum <= (#{pi.pageNo} * #{pi.amount})                 
+             ) WHERE rno > (#{pi.pageNo}-1) * #{pi.amount}
+                                     
+      ]]>
+	</select>
+
+	<select id="getCompleteList"
+		resultType="com.red.boot.domain.QuestionVO">
+		<![CDATA[ 
+			select * from 
+			(select rownum as rno, questionTable.* from questionTable
+			where questionComplete = #{questionComplete} and rownum > 0 and rownum <= (#{pi.pageNo} * #{pi.amount})   
+			order by questionNumber desc)
+			WHERE rno > (#{pi.pageNo}-1) * #{pi.amount}    
+		 ]]>
+	</select>
+
+
+	<select id="getTotlaComplete" resultType="int">
+		select
+		count(questionNumber) from questionTable
+		where questionComplete =
+		#{questionComplete}
+	</select>
+
+	<!-- <select id="getListWithPagingAdmin" resultType="com.red.boot.domain.QuestionVO"> 
+		<![CDATA[ SELECT * FROM ( SELECT ROWNUM AS rno, questionTable.* FROM ( select 
+		* from questionTable order by questionNumber desc ) questionTable WHERE ]]> 
+		<![CDATA[ rownum > 0 and rownum <= (#{pageNo} * #{amount}) ) WHERE rno > 
+		(#{pageNo}-1) * #{amount} ]]> </select> -->
+
+	<!-- 회원 문의 내역 조회(관리자) -->
+	<!-- <select id="adminGetList" resultType="com.red.boot.domain.QuestionVO"> 
+		SELECT q.questionNumber,q.questionTitle,q.questionContent,q.questionRegDate,q.questionComplete, 
+		u.userId FROM questionTable q INNER JOIN userInfoTable u ON q.userNum = u.userNum 
+		order by q.questionNumber desc </select> -->
+
+	<select id="getListWithPagingAdmin"
+		resultType="com.red.boot.domain.QuestionVO">
+      <![CDATA[  
+		SELECT * FROM ( SELECT ROWNUM AS rno, questionTable.*
+		FROM ( SELECT
+		q.questionNumber,q.questionTitle,q.questionContent,q.questionRegDate,q.questionComplete,
+		u.userId
+		FROM questionTable q
+		INNER JOIN userInfoTable u ON q.userNum =
+		u.userNum
+		order by q.questionNumber desc )
+		questionTable WHERE rownum > 0 and
+		rownum <= (#{pageNo} * #{amount}) ) 
+		WHERE rno > (#{pageNo}-1) * #{amount}
+      ]]>
+	</select>
+
+	<!-- 페이징 -->
+
+	<select id="getTotalCount" resultType="int">
+		select
+		count(questionNumber) from questionTable
+		where userNum = #{userNum} and
+		questionNumber > 0
+	</select>
+
+	<select id="getTotlaCountAdmin" resultType="int">
+		select
+		count(questionNumber) from questionTable
+		where questionNumber > 0
+	</select>
+
+	<!-- 등록 -->
+
+	<insert id="insertQuestion">
+		INSERT INTO questionTable (questionNumber,
+		questionTitle, questionContent,
+		questionComplete, userNum,
+		questionRegDate)
+		VALUES (question_seq.nextval, #{questionTitle},
+		#{questionContent}, 0,
+		#{userNum}, sysdate)
+	</insert>
+
+	<!-- 상세보기 -->
+
+	<select id="getQuestionOne"
+		resultType="com.red.boot.domain.QuestionVO">
+		select * from questionTable where questionNumber =
+		#{questionNumber}
+	</select>
+</mapper>

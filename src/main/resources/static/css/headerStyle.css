@@ -1,0 +1,149 @@
+@charset "UTF-8";
+/* 문자 집합 설정 */
+
+/* 폰트 스타일 지정 */
+@font-face {
+    font-family: 'MBC1961GulimM';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961GulimM.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 전역 스타일 초기화 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'MBC1961GulimM';
+    font-size: 20px;
+}
+
+body, html {
+	cursor: url('/img/cursor2.png'), auto;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* 헤더 스타일 */
+header {
+    background-color: #000000;
+    padding: 10px;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-family: "MBC1961GulimM";
+    height: 80px;
+}
+
+.logo {
+    height: 50px;
+}
+
+.logo img {
+    max-height: 50px;
+    width: 100px;
+    height: 50px;
+    margin-left: 10px;
+}
+
+.main-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-nav ul,
+.main-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.header-nav ul {
+    margin-right: 20px;
+    float: right;
+}
+
+.header-nav li a {
+    color: #fff; /* 헤더 내비게이션 링크 색상 */
+}
+
+.header-nav li {
+    display: inline;
+    margin-left: 20px;
+}
+
+.main-nav li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    text-align: center;
+    letter-spacing: 5px;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: #000; /* 메인 내비게이션 링크 색상 */
+}
+
+.header-nav li a:hover {
+    color: orange; /* 헤더 내비게이션 링크 호버 시 색상 변경 */
+}
+
+.main-nav li a:hover {
+    color: orange; /* 메인 내비게이션 링크 호버 시 색상 변경 */
+}
+
+/* 메인 내비게이션 스타일 */
+.main-nav li {
+    padding: 15px;
+    position: relative;
+    display: inline-block;
+}
+
+/* 서브메뉴 스타일 */
+.submenu {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    border-radius: 2px;
+    box-shadow: 1px 1px 1px gray;
+}
+
+.submenu a {
+    font-size: 18px; /* 서브메뉴 링크 글꼴 크기 */
+}
+
+.submenu li {
+    width: 200px;
+}
+
+.main-nav li:hover .submenu {
+    display: block;
+}
+
+#chkCash {
+    border: none;
+    color: coral; /* chkCash 아이디의 텍스트 색상 */
+    font-size: 15px; /* chkCash 아이디의 글꼴 크기 */
+}
+
+#chkCash:hover {
+    cursor: pointer; /* chkCash 아이디 호버 시 커서 스타일 변경 */
+    color: yellow; /* chkCash 아이디 호버 시 색상 변경 */
+    font-size: 18px; /* chkCash 아이디 호버 시 글꼴 크기 변경 */
+}

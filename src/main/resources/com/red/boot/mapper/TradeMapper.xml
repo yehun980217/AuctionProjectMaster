@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- mapper 활용 xml이라는 DTD 설정 -->
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<!-- 어떤 인터페이스랑 연결하는 거다 하고 네임스페이스 하는거지 -->   
+<mapper namespace="com.red.boot.mapper.TradeMapper">
+   
+   <sql id="search">
+      <trim suffix=" ) and" prefix="(">
+         <foreach collection="typeArr" item="type" separator=" or ">
+            <if test="type == 'N'.toString()">
+               itemName like '%'||#{keyword}||'%'
+            </if>
+            <if test="type == 'C'.toString()">
+               itemContent like '%'||#{keyword}||'%'
+            </if>
+         </foreach>
+      </trim>   
+   </sql>   
+
+   <insert id="insertTrade">
+       insert into tradeTable
+       (TRADENUMBER, TRADEMINPRICE, TRADEBUYNOWPRICE, TRADEFINALPRICE, TRADESTART,
+       TRADEEND, ITEMNUMBER, tradeViewCount, userNum, tradeIng) values
+       (trade_seq.nextval, #{tradeMinPrice}, 0, #{tradeFinalPrice}, #{tradeStart},
+        #{tradeEnd}, #{itemNumber}, 0, 0, 'Y')
+   </insert>
+
+
+   <select id="getListByIng" resultType="com.red.boot.domain.TradeVo">
+       <![CDATA[ 
+       select finalTbl.* from 
+         ( select rownum rno, trTbl.* from 
+             (select tradetable.* from tradetable, itemtable 
+                where tradetable.itemNumber = itemtable.itemNumber and
+       ]]>
+         <if test="type == 'N'.toString()">
+            itemtable.itemName like '%'||#{keyword}||'%' and
+         </if>
+         <if test="type == 'C'.toString()">
+            itemtable.itemContent like '%'||#{keyword}||'%' and
+         </if>
+         <if test="type == 'A'.toString()">
+            (itemtable.itemContent like '%'||#{keyword}||'%' or 
+            itemtable.itemName like '%'||#{keyword}||'%' ) and
+         </if>
+
+      <![CDATA[ 
+         tradetable.tradeIng = 'Y'  order by tradetable.TRADEEND asc) trTbl
+         where  rownum > 0 and rownum <= (#{pageNo} * #{amount}) )  finalTbl
+         WHERE rno > (#{pageNo}-1) * #{amount}    
+       ]]>
+
+ 
+   </select>
+
+   <select id="getTotalCountByIng" resultType="int">
+      select count(TRADENUMBER)  from tradeTable, itemTable
+      where tradetable.itemNumber = itemtable.itemNumber and tradetable.tradeIng = 'Y'
+   </select>
+
+   
+   <select id="getListByEnd" resultType="com.red.boot.domain.TradeVo">
+       <![CDATA[ 
+       select finalTbl.* from 
+         ( select rownum rno, trTbl.* from 
+             (select tradetable.* from tradetable, itemtable 
+                where tradetable.itemNumber = itemtable.itemNumber and
+       ]]>
+         <if test="type == 'N'.toString()">
+            itemtable.itemName like '%'||#{keyword}||'%' and
+         </if>
+         <if test="type == 'C'.toString()">
+            itemtable.itemContent like '%'||#{keyword}||'%' and
+         </if>
+         <if test="type == 'A'.toString()">
+            (itemtable.itemContent like '%'||#{keyword}||'%' or 
+            itemtable.itemName like '%'||#{keyword}||'%' ) and
+         </if>
+
+      <![CDATA[ 
+         tradetable.tradeIng = 'N'  order by tradetable.TRADEEND desc) trTbl
+         where  rownum > 0 and rownum <= (#{pageNo} * #{amount}) )  finalTbl
+         WHERE rno > (#{pageNo}-1) * #{amount}    
+       ]]>
+
+       
+   </select>
+
+   <select id="getTotalCountByEnd" resultType="int">
+      select count(TRADENUMBER)  from tradeTable, itemTable
+      where tradetable.itemNumber = itemtable.itemNumber and tradetable.tradeIng = 'N'
+   </select>
+   
+   <delete id="deleteTrade">
+      delete from tradeTable where tradeNumber = #{tradeNumber}
+   </delete>
+   
+   
+   <select id="getTradeOne" resultType="com.red.boot.domain.TradeVo">
+      select * from tradeTable  where tradeNumber = #{tradeNumber}
+   </select>
+   
+   <update id="updateTradeIng">
+      update  tradeTable   set   tradeIng = #{tradeIng}   where tradeNumber = #{tradeNumber}
+   </update>
+   
+   <update id="updateTrade">
+      update  tradeTable   set   tradeBuyNowPrice = #{tradeBuyNowPrice}, userNum = #{userNum}
+      where tradeNumber = #{tradeNumber}
+   </update>
+   
+   <select id="getList" resultType="com.red.boot.domain.TradeVo">
+      select * from tradeTable  order by tradeNumber desc
+   </select>
+   
+   
+</mapper>

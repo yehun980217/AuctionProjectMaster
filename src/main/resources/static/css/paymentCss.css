@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'MBC1961GulimM';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961GulimM.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body{
+	font-family: 'MBC1961GulimM';
+	letter-spacing: 3px;
+}
+
+#charge_kakao{
+	font-family: 'MBC1961GulimM';
+	background-color : #ffeb00;
+	color:#000;
+	width:100px;
+	height:50px;
+	margin:15px 10px;
+	border: 1px solid #fff;
+	border-radius:50px;
+	font-size:15px;
+	font-weight:500;
+	
+}
+
+#charge_kakao:hover{
+	background-color : #000;
+	color:#ffeb00;
+	cursor:pointer;
+	font-weight:bold;
+}
+
+/* width: 200px; 원하는 가로 너비 설정
+  height: 100px; 원하는 세로 높이 설정
+  background-color: #3498db; 배경색 지정
+  border-radius: 50px; 좌우가 둥근 정도를 반 원 형태로 만듭니다. 값을 조정하여 원하는 모양으로 조절할 수 있습니다.
+  color: #fff; 글자색 지정
+  text-align: center;
+  line-height: 100px; */

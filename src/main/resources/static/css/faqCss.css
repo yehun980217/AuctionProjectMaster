@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+.qaInfoAll,
+ .qaInfoBtn,
+  .qaPayBtn,
+   .qaAuctionBtn,
+    .qaEtcBtn{
+	background-color: #002f47; /* 짙은 파란색 배경 */
+	color: #ffdc6b; /* 황금색 글자색 */
+	padding: 10px 20px;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+	margin: 10px 10px;
+}
+.faqbtn{
+  background-color: #ff6b6b; /* 빨간색 배경 */
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  margin: 10px 0;
+  width:200px;
+}
+.qaInfoAll:hover,
+ .qaInfoBtn:hover,
+  .qaPayBtn:hover,
+   .qaAuctionBtn:hover,
+	.qaEtcBtn:hover{
+	background-color: #ffdc6b; /* 황금색 배경 */
+	color: #002f47; /* 짙은 파란색 글자색 */
+	padding: 10px 20px;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+	margin: 10px 10px;
+}
+
+ .faqbtn:hover{
+ background-color: #ff0000;
+  cursor:pointer;
+ }
+ 
+ .qna{width:1060px;}

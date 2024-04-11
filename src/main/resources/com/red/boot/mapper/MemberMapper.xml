@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.red.boot.mapper.MemberMapper">
+	<select id="findByUserIdAndPassword"
+		parameterType="com.red.boot.domain.MemberVO"
+		resultType="com.red.boot.domain.MemberVO">
+		SELECT * FROM userInfoTable
+		WHERE userId = #{userId} AND userPw = #{userPw}
+	</select>
+	
+	<select id="findByUserId" parameterType="string"
+		resultType="com.red.boot.domain.MemberVO">
+		SELECT * FROM userInfoTable WHERE userId = #{userId}
+	</select>
+	
+	<select id="findByUserNum" resultType="String">
+		SELECT userId FROM userInfoTable WHERE userNum = #{userNum}
+	</select>
+	
+	<update id="updateEmailRole">
+      update userInfoTable set userRole = 1 where
+      userId = #{userId}
+   	</update>
+   	
+   	<update id="updateUserCashPlus">
+      update userInfoTable set userCash = userCash + #{userCash}
+      where userNum = #{userNum}
+   	</update>
+   	
+   	<update id="updateUserCashMinus">
+      update userInfoTable set userCash = userCash - #{userCash}
+      where userNum = #{userNum}
+   	</update>
+   	
+   	<select id="findUserId" resultType="String">
+		SELECT userId FROM userInfoTable 
+		WHERE userName= #{userName} and userPhoneNum = #{userPhoneNum}
+	</select>
+	
+	 <select id="findUserPw" resultType="String">
+		SELECT userPw FROM userInfoTable 
+		WHERE userName= #{userName} and userPhoneNum = #{userPhoneNum} and userId = #{userId}
+	</select>
+	
+	<delete id="deleteUser">
+        delete from userInfoTable where userId = #{userId} AND userPw = #{userPw}
+    </delete>
+      
+    <update id="modifyUserInfo">
+        update userInfoTable set userPw = #{userPw}, userName = #{userName},
+        userAddress = #{userAddress} where userId = #{userId}
+    </update>
+	
+	<update id="updateChangeUserPw">
+      update userInfoTable set userPw = #{userPw} where userId = #{userId}
+   </update>
+	
+</mapper>
