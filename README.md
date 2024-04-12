@@ -29,5 +29,4 @@ Spring, Mybatis
 - 개인 마이페이지에서 개별 입찰 내역 확인 가능<br>
 <br>
 - 마이페이지, 관리자 페이지에서 개인 정보 등 수정 가능
-
-<a href="https://drive.google.com/file/d/14c1G0Yw7spRpqIpWTqHgQspTv-vLhj4I/view?usp=drive_link">포트폴리오 다운로드(클릭)</a>
+<a href="https://docs.google.com/presentation/d/1AcbUpWNkVC6qHo-LMBmNhFS-5xrSnnh3/edit?usp=drive_link&ouid=112319123635239821333&rtpof=true&sd=true">포트폴리오 다운로드(클릭)</a>
