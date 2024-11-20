@@ -52,4 +52,4 @@
     </li>
 </ul>
 
-<a href="beommune.kr">법문해 프로젝트 이용해보기</a>
+<a href="http://beommune.kr">법문해 프로젝트 이용해보기</a>
