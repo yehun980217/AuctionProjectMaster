@@ -1,55 +1,98 @@
-<h2>LegalProject</h2>
-<p>빅데이터과 1학년 2학기에 진행한 기말 팀 프로젝트</p>
+# ActionProject
 
-<h2>SoftWare</h2>
-<strong>개발 도구 </strong>
-<p>IntelliJ</p>
-<strong>언어</strong>
-<p>JAVA, MariaDB, CSS, JavaScript, JSP</p>
-<strong>라이브러리</strong><br>
-<p>jQuery, Ajax, OpenAI, CoolSMS</p>
-<strong>프레임워크</strong>
-<p>Spring, Mybatis</p>
+조별로 진행된 교육 최종 프로젝트로, 경매 시스템을 구현한 웹 애플리케이션입니다.
 
-<hr>
+## 주요 기능
 
-<h2>상세 내용</h2>
-<ul>
-    <li><strong>법률 텍스트 기반 사용자 지원</strong>
-        <ul>
-            <li>- 사용자가 입력한 상황을 자연어처리(NLP)로 분석하여 관련 판례문을 검색 및 노출</li>
-            <li>- Open API를 활용해 입력된 문장에서 키워드를 추출, 키워드로 관련 판례를 검색 가능</li>
-            <li>- 판례 요약 기능을 통해 긴 판례문을 요약된 형태로 제공하여 가독성을 향상</li>
-        </ul>
-    </li>
-    <br>
-    <li><strong>법률 상담 챗봇</strong>
-        <ul>
-            <li>- ChatGPT 기반 챗봇으로 간단한 법률 질문에 대한 답변 제공</li>
-            <li>- 사용자가 궁금해하는 법적 절차나 판례 정보 등을 대화 형태로 안내</li>
-        </ul>
-    </li>
-    <br>
-    <li><strong>사용자 맞춤형 기능</strong>
-        <ul>
-            <li>- 마이페이지에서 북마크한 판례문을 확인할 수 있는 기능</li>
-            <li>- 개인 북마크 목록을 관리(추가, 삭제)하여 사용 편의성 향상</li>
-        </ul>
-    </li>
-    <br>
-    <li><strong>키워드 기반 검색</strong>
-        <ul>
-            <li>- 사용자가 입력한 문장에서 자동으로 추출된 키워드를 기반으로 정확한 판례 검색 가능</li>
-            <li>- 기존 DB에 저장된 키워드 외에도 새로운 키워드를 추출하여 결과를 확장</li>
-        </ul>
-    </li>
-    <br>
-    <li><strong>보안 및 데이터 관리</strong>
-        <ul>
-            <li>- OpenAI API 키와 데이터베이스 비밀번호는 환경 변수로 관리하여 보안 강화</li>
-            <li>- MyBatis를 활용한 효율적인 데이터베이스 쿼리 관리</li>
-        </ul>
-    </li>
-</ul>
+### 사용자 기능
+- **로그인 및 본인 인증**:  
+  개인회원 로그인 후 카카오페이 및 계좌이체를 통해 잔고 충전 가능.  
+  이메일 인증을 통해 본인 인증 후 경매 참여 가능.
 
-<a href="http://beommune.kr">법문해 프로젝트 이용해보기</a>
+- **경매 참여 및 알림**:  
+  - 경매 참여 시 입찰 메일 발송.  
+  - 낙찰 시 낙찰 메일 발송.  
+  - 유찰 시 입찰 금액이 개인 잔고로 자동 환불.
+
+- **마이페이지**:  
+  - 개인 입찰 내역 확인 가능.  
+  - 개인 정보 및 비밀번호 수정 가능.
+
+### 관리자 기능
+- **공지사항 및 Q/A 관리**:  
+  - 공지사항 및 Q/A 페이지 등록, 삭제, 수정 가능.
+
+- **상품 및 경매 관리**:  
+  - 예술품 상품 등록 및 경매 등록 가능.  
+  - 상품 확인 시 입찰 내역 확인 가능.
+
+- **관리자 페이지**:  
+  - 관리자 정보 수정 가능.
+
+---
+
+## 사용 기술
+
+### 개발 도구
+- **Spring STS 3**
+- **Oracle SQL Developer**
+- **Visual Studio Code**
+
+### 사용 언어
+- **Java**
+- **SQL**
+- **HTML**
+- **CSS**
+- **JavaScript**
+- **JSP**
+
+### 라이브러리 및 API
+- **jQuery**
+- **Ajax**
+- **카카오 로그인**
+- **카카오페이 (IMPORT)**
+
+### 프레임워크
+- **Spring**
+- **MyBatis**
+
+---
+
+## 상세 기능
+
+1. **회원 기능**  
+   - 로그인 및 카카오페이를 이용한 잔고 충전.  
+   - 이메일 인증 후 경매 참여 가능.
+
+2. **경매 시스템**  
+   - 입찰 시 실시간 메일 발송.  
+   - 낙찰 또는 유찰 후 잔고 관리.  
+
+3. **관리자 기능**  
+   - 상품 등록 및 경매 관리.  
+   - 공지사항 및 Q/A 관리.
+
+4. **마이페이지**  
+   - 입찰 내역 확인 및 개인정보 수정.
+
+---
+
+## 설치 및 실행 방법
+
+1. **필요한 개발 환경**:
+   - Java Development Kit (JDK) 8 이상
+   - Spring STS 3
+   - Oracle Database
+   - Visual Studio Code (HTML, CSS, JavaScript 편집용)
+
+2. **데이터베이스 설정**:
+   - Oracle SQL Developer를 통해 데이터베이스 생성.
+   - 프로젝트 내부의 `schema.sql` 파일을 사용하여 테이블 생성 및 초기 데이터 입력.
+
+3. **프로젝트 실행**:
+   - Spring STS 3에서 프로젝트 임포트 후 실행.
+   - 브라우저를 통해 로컬 서버에 접속 (`http://localhost:8080`).
+
+---
+
+<a href="https://docs.google.com/presentation/d/1AcbUpWNkVC6qHo-LMBmNhFS-5xrSnnh3/edit?usp=drivesdk&ouid=112319123635239821333&rtpof=true&sd=true">포토폴리오 보러가기</a>
