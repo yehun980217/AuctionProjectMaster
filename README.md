@@ -2,6 +2,33 @@
 
 조별로 진행된 교육 최종 프로젝트로, 경매 시스템을 구현한 웹 애플리케이션입니다.
 
+## 사용 기술
+
+### 개발 도구
+- **Spring STS 3**
+- **Oracle SQL Developer**
+- **Visual Studio Code**
+
+### 사용 언어
+- **Java**
+- **SQL**
+- **HTML**
+- **CSS**
+- **JavaScript**
+- **JSP**
+
+### 라이브러리 및 API
+- **jQuery**
+- **Ajax**
+- **카카오 로그인**
+- **카카오페이 (IMPORT)**
+
+### 프레임워크
+- **Spring**
+- **MyBatis**
+
+---
+
 ## 주요 기능
 
 ### 사용자 기능
@@ -28,33 +55,6 @@
 
 - **관리자 페이지**:  
   - 관리자 정보 수정 가능.
-
----
-
-## 사용 기술
-
-### 개발 도구
-- **Spring STS 3**
-- **Oracle SQL Developer**
-- **Visual Studio Code**
-
-### 사용 언어
-- **Java**
-- **SQL**
-- **HTML**
-- **CSS**
-- **JavaScript**
-- **JSP**
-
-### 라이브러리 및 API
-- **jQuery**
-- **Ajax**
-- **카카오 로그인**
-- **카카오페이 (IMPORT)**
-
-### 프레임워크
-- **Spring**
-- **MyBatis**
 
 ---
 
