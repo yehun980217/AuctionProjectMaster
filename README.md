@@ -75,24 +75,4 @@
 4. **마이페이지**  
    - 입찰 내역 확인 및 개인정보 수정.
 
----
-
-## 설치 및 실행 방법
-
-1. **필요한 개발 환경**:
-   - Java Development Kit (JDK) 8 이상
-   - Spring STS 3
-   - Oracle Database
-   - Visual Studio Code (HTML, CSS, JavaScript 편집용)
-
-2. **데이터베이스 설정**:
-   - Oracle SQL Developer를 통해 데이터베이스 생성.
-   - 프로젝트 내부의 `schema.sql` 파일을 사용하여 테이블 생성 및 초기 데이터 입력.
-
-3. **프로젝트 실행**:
-   - Spring STS 3에서 프로젝트 임포트 후 실행.
-   - 브라우저를 통해 로컬 서버에 접속 (`http://localhost:8080`).
-
----
-
 <a href="https://docs.google.com/presentation/d/1AcbUpWNkVC6qHo-LMBmNhFS-5xrSnnh3/edit?usp=drivesdk&ouid=112319123635239821333&rtpof=true&sd=true">포토폴리오 보러가기</a>
