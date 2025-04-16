@@ -51,5 +51,5 @@
 
 ---
 
-📌 **더 자세한 내용을 보고 싶다면?**  
+📌 **더 자세한 내용을 보고 싶다면???**  
 ➡️ [포트폴리오 보러가기](https://docs.google.com/presentation/d/1AcbUpWNkVC6qHo-LMBmNhFS-5xrSnnh3/edit?usp=drivesdk&ouid=112319123635239821333&rtpof=true&sd=true)
